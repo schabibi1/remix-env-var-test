@@ -20,10 +20,10 @@ const components = {
   page: Page,
 };
 
-console.log(process.env.STORYBLOK_API_TOKEN)// loads env var
+console.log(process.env.STORYBLOK_API_TOKEN)
 
 storyblokInit({
-  accessToken: process.env.STORYBLOK_API_TOKEN,// loads env var
+  accessToken: process.env.STORYBLOK_API_TOKEN,
   use: [apiPlugin],
   components,
 });

@@ -7,7 +7,7 @@ import {
 } from "@storyblok/react";
 
 export const loader = async (params: { slug: string }) => {
-  console.log(process.env.STORYBLOK_API_TOKEN); // doesn't load env var
+  console.log(process.env.STORYBLOK_API_TOKEN);
   const slug = params.slug ?? "home";
 
   let { data } = await getStoryblokApi().get(`cdn/stories/${slug}`, { version: "draft" });
