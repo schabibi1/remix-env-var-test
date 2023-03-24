@@ -1,3 +1,4 @@
+import { json } from "@remix-run/node";
 import type { MetaFunction } from "@remix-run/node";
 import {
   Links,
@@ -20,13 +21,25 @@ const components = {
   page: Page,
 };
 
-console.log(process.env.STORYBLOK_API_TOKEN)
+const isServer = typeof window === "undefined";
+
+const accessToken = isServer
+  ? process.env.STORYBLOK_API_TOKEN
+  : window.env.STORYBLOK_API_TOKEN;
 
 storyblokInit({
-  accessToken: process.env.STORYBLOK_API_TOKEN,
+  accessToken,
   use: [apiPlugin],
   components,
 });
+
+export const loader = async () => {
+  return json({
+    env: {
+      STORYBLOK_API_TOKEN: process.env.STORYBLOK_API_TOKEN,
+    },
+  });
+};
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
