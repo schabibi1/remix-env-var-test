@@ -17,6 +17,7 @@ const components = {
   page: Page,
 };
 
+// test
 const isServer = typeof window === "undefined";
 
 const accessToken = isServer
